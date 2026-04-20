@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "bun ./index.ts"
+  },
+  "dependencies": {
+    "@repo/server-definitions": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@biomejs/biome": "catalog:",
+    "@repo/config": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
