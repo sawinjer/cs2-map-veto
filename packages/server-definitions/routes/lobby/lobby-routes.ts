@@ -2,7 +2,6 @@ import Elysia, { t } from "elysia";
 import { nanoid } from "nanoid";
 import { getGame, onGameChange } from "../../storage/game-storage";
 import { getLobby, onLobbyChange, saveLobby } from "../../storage/loby-storage";
-import { safeTry } from "../../utils/safe-try";
 
 const gameSubscribers: Partial<Record<string, () => void>> = {};
 const lobbySubscribers: Partial<Record<string, () => void>> = {};

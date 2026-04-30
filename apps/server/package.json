@@ -7,7 +7,8 @@
     "dev": "bun ./index.ts"
   },
   "dependencies": {
-    "@repo/server-definitions": "workspace:*"
+    "@repo/server-definitions": "workspace:*",
+    "elysia": "catalog:"
   },
   "devDependencies": {
     "@types/bun": "latest",

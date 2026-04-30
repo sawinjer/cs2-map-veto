@@ -13,13 +13,13 @@
     "./client": "./client.ts"
   },
   "peerDependencies": {
-    "typescript": "^5"
+    "elysia": ":catalog",
+    "typescript": ">=5"
   },
   "dependencies": {
     "@biomejs/biome": "catalog:",
     "@elysiajs/cors": "^1.4.1",
     "@repo/config": "workspace:*",
-    "elysia": "catalog:",
     "nanoid": "^5.1.9",
     "zod": "^4.3.6"
   }

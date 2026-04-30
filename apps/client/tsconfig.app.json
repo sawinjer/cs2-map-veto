@@ -22,8 +22,11 @@
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "elysia": ["./node_modules/elysia"],
+      "elysia/*": ["./node_modules/elysia/*"]
+    }
   },
   "include": [
     "src"

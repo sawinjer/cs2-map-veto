@@ -16,6 +16,7 @@ RUN bun install --frozen-lockfile
 FROM base AS builder
 COPY --from=installer /app/node_modules ./node_modules
 COPY --from=pruner /app/out/full/ .
+COPY --from=pruner /app/out/bun.lock ./bun.lock
 RUN bun install --frozen-lockfile
 RUN bunx turbo run build --filter=client
 

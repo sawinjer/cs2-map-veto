@@ -23,11 +23,11 @@ FROM oven/bun:1.3.0-alpine AS runner
 WORKDIR /app
 
 RUN apk add --no-cache bash curl \
-    && curl -1sLf 'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' | sh \
-    && apk add --no-cache infisical
+  && curl -1sLf 'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' | sh \
+  && apk add --no-cache infisical
 
 COPY --from=builder /app .
 
 EXPOSE 3000
 
-CMD infisical run --projectId=$INFISICAL_PROJECT_ID --env=$INFISICAL_ENV -- bun apps/server/index.ts
+CMD ["sh", "-c", "infisical run --projectId=$INFISICAL_PROJECT_ID --env=$INFISICAL_ENV --domain=$INFISICAL_DOMAIN -- bun apps/server/index.ts"]

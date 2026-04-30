@@ -3,12 +3,12 @@ services:
     build:
       context: .
       dockerfile: apps/server/Dockerfile
-    ports:
-      - "3000:3000"
     environment:
+      INFISICAL_DOMAIN: ${INFISICAL_DOMAIN}
       INFISICAL_TOKEN: ${INFISICAL_TOKEN}
       INFISICAL_PROJECT_ID: ${INFISICAL_PROJECT_ID}
       INFISICAL_ENV: ${INFISICAL_ENV:-production}
+      REDIS_URL: ${REDIS_URL}
     restart: unless-stopped
 
   client:
@@ -16,3 +16,5 @@ services:
       context: .
       dockerfile: apps/client/Dockerfile
     restart: unless-stopped
+    environment:
+      VITE_SERVER_URL: ${VITE_SERVER_URL}
