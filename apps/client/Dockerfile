@@ -14,6 +14,8 @@ RUN bun install --frozen-lockfile
 
 # --- Build static assets ---
 FROM base AS builder
+ARG VITE_SERVER_URL
+ENV VITE_SERVER_URL=$VITE_SERVER_URL
 COPY --from=installer /app/node_modules ./node_modules
 COPY --from=pruner /app/out/full/ .
 COPY --from=pruner /app/out/bun.lock ./bun.lock
