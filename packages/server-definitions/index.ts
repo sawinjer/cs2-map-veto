@@ -2,8 +2,8 @@ import cors from "@elysiajs/cors";
 import Elysia from "elysia";
 import { redis, redisSub } from "./redis";
 import { healthRoute } from "./routes/health/health-route";
-import { matchRoutes } from "./routes/match/match-routes";
 import { lobbyRoutes } from "./routes/lobby/lobby-routes";
+import { matchRoutes } from "./routes/match/match-routes";
 import { teamsRoutes } from "./routes/teams/teams-routes";
 
 const app = new Elysia()
