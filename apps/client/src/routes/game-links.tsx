@@ -47,13 +47,13 @@ function RouteComponent() {
   const teams = useTeams();
 
   const team1Id = game.data?.team1Id;
-  const team2Id = game.data?.team1Id;
+  const team2Id = game.data?.team2Id;
 
   const team1Name = team1Id
     ? teams.data?.find((team) => team._id === team1Id)?.name || "Team 1"
     : "Team 1";
 
-  const team2Name = team1Id
+  const team2Name = team2Id
     ? teams.data?.find((team) => team._id === team2Id)?.name || "Team 2"
     : "Team 2";
 

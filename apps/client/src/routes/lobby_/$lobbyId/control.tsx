@@ -15,7 +15,31 @@ type GameLinks = {
 };
 
 const linkClass =
-  "flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950";
+  "flex h-10 flex-1 items-center justify-center rounded-md border border-gray-200 bg-white text-sm font-medium shadow-sm transition-colors hover:bg-gray-50 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950";
+
+function CopyButton({ url }: { url: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.origin + url);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-gray-200 bg-white text-sm shadow-sm transition-colors hover:bg-gray-50"
+      title="Copy link"
+    >
+      {copied ? (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      ) : (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+      )}
+    </button>
+  );
+}
 
 function RouteComponent() {
   const { lobbyId } = Route.useParams();
@@ -46,31 +70,43 @@ function RouteComponent() {
 
           {gameLinks ? (
             <div className="flex flex-col gap-2">
-              <Link to="/lobby/$lobbyId" params={{ lobbyId }} className={linkClass}>
-                Lobby watch
-              </Link>
+              <div className="flex gap-2">
+                <Link to="/lobby/$lobbyId" params={{ lobbyId }} className={linkClass}>
+                  Lobby watch
+                </Link>
+                <CopyButton url={`/lobby/${lobbyId}`} />
+              </div>
 
-              <Link to="/lobby/$lobbyId/control" params={{ lobbyId }} className={linkClass}>
-                Lobby control
-              </Link>
+              <div className="flex gap-2">
+                <Link to="/lobby/$lobbyId/control" params={{ lobbyId }} className={linkClass}>
+                  Lobby control
+                </Link>
+                <CopyButton url={`/lobby/${lobbyId}/control`} />
+              </div>
 
-              <Link
-                to="/vote/$gameId"
-                params={{ gameId: gameLinks.gameId }}
-                search={{ key: gameLinks.team1Key }}
-                className={linkClass}
-              >
-                {team1Name} Vote
-              </Link>
+              <div className="flex gap-2">
+                <Link
+                  to="/vote/$gameId"
+                  params={{ gameId: gameLinks.gameId }}
+                  search={{ key: gameLinks.team1Key }}
+                  className={linkClass}
+                >
+                  {team1Name} Vote
+                </Link>
+                <CopyButton url={`/vote/${gameLinks.gameId}?key=${gameLinks.team1Key}`} />
+              </div>
 
-              <Link
-                to="/vote/$gameId"
-                params={{ gameId: gameLinks.gameId }}
-                search={{ key: gameLinks.team2Key }}
-                className={linkClass}
-              >
-                {team2Name} Vote
-              </Link>
+              <div className="flex gap-2">
+                <Link
+                  to="/vote/$gameId"
+                  params={{ gameId: gameLinks.gameId }}
+                  search={{ key: gameLinks.team2Key }}
+                  className={linkClass}
+                >
+                  {team2Name} Vote
+                </Link>
+                <CopyButton url={`/vote/${gameLinks.gameId}?key=${gameLinks.team2Key}`} />
+              </div>
             </div>
           ) : (
             <p className="text-center text-sm text-gray-400">
