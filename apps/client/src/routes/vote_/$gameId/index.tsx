@@ -101,7 +101,7 @@ function RouteComponent() {
         <div className="flex gap-3 flex-wrap">
           {game.stages.map((stage, index) => (
             <div
-              // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+              // biome-ignore lint/suspicious/noArrayIndexKey: stages have no stable id
               key={index}
               style={{
                 padding: "10px 20px",
@@ -175,7 +175,7 @@ function RouteComponent() {
               <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
                 {game.pickedMaps.map((map) => (
                   <div key={map} style={{ position: "relative", display: "inline-block", borderRadius: "12px", overflow: "hidden", border: "2px solid #3b82f6" }}>
-                    <img src={"/" + cs2MapToImage[map]} alt={map} style={{ display: "block", height: "180px", objectFit: "cover" }} />
+                    <img src={`/${cs2MapToImage[map]}`} alt={map} style={{ display: "block", height: "180px", objectFit: "cover" }} />
                     <div style={{ position: "absolute", bottom: 0, width: "100%", padding: "8px", backgroundColor: "white", textAlign: "center", fontWeight: "bold", color: "#3b82f6" }}>
                       {map}
                     </div>
@@ -235,7 +235,7 @@ function RouteComponent() {
                   justifyContent: "center",
                 }}
               >
-                <img src={"/" + cs2MapToImage[map]} alt="map" />
+                <img src={`/${cs2MapToImage[map]}`} alt="map" />
                 <div
                   style={{
                     position: "absolute",
